@@ -5,10 +5,10 @@ import javax.swing.JOptionPane;
 
 public class BankATM extends javax.swing.JFrame {
 
-    double hasil;
-    String answer;
+    double result;
+    String ans;
     double saldo;
-    int masukan;
+    int input;
     public BankATM() {
         initComponents();
     }
@@ -159,49 +159,55 @@ public class BankATM extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCekSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCekSaldoActionPerformed
-       JOptionPane.showMessageDialog(rootPane, "Saldo Anda Saat Ini adalah :"+ saldo);
-        hasil = saldo;
-        saldo=hasil;
-        answer = String.format(" %,.2f ",saldo);
-        jtxtTampilan2.setText(answer);
+       JOptionPane.showMessageDialog(rootPane, "Saldo Anda :"+ saldo);
+        result = saldo;
+        saldo = result;
+        ans = String.format(" %,.2f ",saldo);
+        jtxtTampilan2.setText(ans);
     }//GEN-LAST:event_btnCekSaldoActionPerformed
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
-        masukan = Integer.parseInt(JOptionPane.showInputDialog("Masukan angka : "));
-        JOptionPane.showMessageDialog(rootPane,"Saldo Anda Saat Ini adalah :"+ (saldo + masukan));
-        hasil = saldo + masukan;
-        saldo=hasil;
-        answer = String.format(" %,.2f ",saldo);
-        jtxtTampilan2.setText(answer);
+        input = Integer.parseInt(JOptionPane.showInputDialog("input angka : "));
+        JOptionPane.showMessageDialog(rootPane,"Saldo Anda Saat Ini adalah :"+ (saldo + input));
+        result = saldo + input;
+        saldo=result;
+        ans = String.format(" %,.2f ",saldo);
+        jtxtTampilan2.setText(ans);
     }//GEN-LAST:event_btnSimpanActionPerformed
 
     private void btnTransferActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferActionPerformed
-        String nama3=JOptionPane.showInputDialog("Silahkan Masukan Nama ");
+        String nama3=JOptionPane.showInputDialog("Silahkan Masukkan Tujuan ");
 
-        masukan = Integer.parseInt(JOptionPane.showInputDialog("Masukan angka : "));
-        if (saldo <= masukan) {
-        JOptionPane.showMessageDialog(rootPane,"Maaf Saldo anda kurang !!!!!");
+        input = Integer.parseInt(JOptionPane.showInputDialog("Masukkan angka : "));
+        if (saldo <= input) {
+        JOptionPane.showMessageDialog(rootPane,"Saldo Tidak Mencukupi !!!!!");
         JOptionPane.showConfirmDialog(null, " Apakah ingin lanjut");
         JOptionPane.showMessageDialog(rootPane,"Tambahkan Saldo Rekening Anda Terlebih Dahulu");
-        System.exit(0);
-        } else if (saldo >= masukan) {
-
+        } else if (saldo >= input) {
+            result = saldo - input;
+        saldo = result;
+        ans = String.format(" %,.2f ", result);
+        jtxtTampilan2.setText(ans);
+        JOptionPane.showMessageDialog(rootPane,"Saldo Anda Saat Ini adalah :"+ saldo+ "\n"+ "Berresult transfer kepada "+nama3+"sebesar :"+ input);
         }
-        hasil = saldo - masukan;
-        saldo=hasil;
-        answer = String.format(" %,.2f ", hasil);
-        jtxtTampilan2.setText(answer);
-        JOptionPane.showMessageDialog(rootPane,"Saldo Anda Saat Ini adalah :"+ saldo+ "\n"+ "Berhasil transfer kepada "+nama3+"sebesar :"+ masukan);
-
+       
     }//GEN-LAST:event_btnTransferActionPerformed
 
     private void btnAmbilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAmbilActionPerformed
-        masukan = Integer.parseInt(JOptionPane.showInputDialog("Masukan angka : "));
-        hasil = saldo - masukan;
-        saldo=hasil;
-        answer = String.format(" %,.2f ", hasil);
-        jtxtTampilan2.setText(answer);
-        JOptionPane.showMessageDialog(rootPane,"Saldo Anda Saat Ini adalah :"+ saldo+ "\n");
+        input = Integer.parseInt(JOptionPane.showInputDialog("Masukkan angka : "));
+        
+        if (saldo <= input) {
+        JOptionPane.showMessageDialog(rootPane,"Saldo Tidak Mencukupi !!!!!");
+        JOptionPane.showConfirmDialog(null, " Apakah ingin lanjut");
+        JOptionPane.showMessageDialog(rootPane,"Tambahkan Saldo Rekening Anda Terlebih Dahulu");
+        } else if (saldo >= input) {
+            result = saldo - input;
+            saldo = result;
+            ans = String.format(" %,.2f ", result);
+            jtxtTampilan2.setText(ans);
+            JOptionPane.showMessageDialog(rootPane,"Saldo Anda Saat Ini adalah :"+ saldo+ "\n");
+        }
+        
 
     }//GEN-LAST:event_btnAmbilActionPerformed
 
